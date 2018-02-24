@@ -31,8 +31,8 @@ namespace AccringtonAcademy
                 //Setting Card Response
                 var card = SetStandardCard(@"Accrington Academy", resource.LaunchMessage,
                     SetCardImage(
-                        "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy-Small.png",
-                        "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy-Large.png"));
+                        "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy/AccringtonAcademy-Small.png",
+                        "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy/AccringtonAcademy-Large.png"));
                 response.Response.Card = card;
             }
 

@@ -26,8 +26,8 @@ namespace AccringtonAcademy
                 // Setting App Card
                 var card = SetStandardCard("GoodBye", resource.StopMessage,
                     SetCardImage(
-                        "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy-Small.png",
-                        "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy-Large.png"));
+                        "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy/AccringtonAcademy-Small.png",
+                        "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy/AccringtonAcademy-Large.png"));
                 response.Response.Card = card;
             }
 

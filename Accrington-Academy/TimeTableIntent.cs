@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Alexa.NET.Request;
 using Alexa.NET.Response;
@@ -18,43 +19,64 @@ namespace AccringtonAcademy
             {
                 Response = new ResponseBody {ShouldEndSession = true}
             };
-
-            var week1Matches = (Regex.Matches(HomePage, "*Week 1*")).Count;
-            var week2Matches = (Regex.Matches(HomePage, "*Week 2*")).Count;
+            int week1Matches;
+            int week2Matches;
+            try
+            {
+                week1Matches = (Regex.Matches(HomePage, ".*week 1.*")).Count;
+                week2Matches = (Regex.Matches(HomePage, ".*week 2.*")).Count;
+            }
+            catch
+            {
+                week1Matches = 0;
+                week2Matches = 0;
+                //ignored
+            }
+            
             var resultText = "";
-            if (week1Matches > week2Matches)
+            try
             {
-                resultText = "This Week it is Week 1 Orange";
-                
+                if (week1Matches > week2Matches)
+                {
+                    log.LogLine("Week 1 Evaluated");
+                    resultText = "This Week it is: Week 1 - Orange";
+
+                }
+                else if (week2Matches > week1Matches)
+                {
+                    log.LogLine("Week 1 Evaluated");
+                    resultText = "This Week it is: Week 2 - Purple";
+                }
+                else
+                {
+                    log.LogLine("Cannot Evaluate the Week");
+                    resultText = "I am Sorry i do not know what week it is, please try again later";
+                }
             }
-            else if (week2Matches > week1Matches)
+            catch
             {
-                resultText = "This Week it is Week 2 Purple";
+                log.LogLine("Cannot Evaluate the Week");
+                resultText = "I am Sorry i do not know what week it is, please try again later";
             }
-            else
-            {
-                resultText = "I am Sorry i do not know what week it is, try again later";
-            }
+            
 
             //The device does not have a Scren so runs the following code block
             //Setting Welcome Speech Response
             IOutputSpeech innerSpeechResponse = new PlainTextOutputSpeech();
-            IOutputSpeech innerSpeechResponseReprompt = new PlainTextOutputSpeech();
+           
 
-            if (resource != null)
-            {
-                ((PlainTextOutputSpeech) innerSpeechResponse).Text = resultText;
+            ((PlainTextOutputSpeech) innerSpeechResponse).Text = resultText;
 
-                //Setting Card Response
-                var card = SetStandardCard( @"Accrington Academy TimeTable", resultText,
-                    SetCardImage(
-                        "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy-Small.png",
-                        "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy-Large.png"));
-                response.Response.Card = card;
-            }
+            //Setting Card Response
+            log.LogLine("Setting up the Card Response");
+            var card = SetStandardCard( @"Accrington Academy TimeTable", resultText,
+                SetCardImage(
+                    "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy/AccringtonAcademy-Small.png",
+                    "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy/AccringtonAcademy-Large.png"));
+            response.Response.Card = card;
+            
        
             response.Response.OutputSpeech = innerSpeechResponse;
-            response.Response.Reprompt.OutputSpeech = innerSpeechResponseReprompt;
             response.Version = "1.0";
             log.LogLine("Skill Response Object...");
             log.LogLine(JsonConvert.SerializeObject(response));

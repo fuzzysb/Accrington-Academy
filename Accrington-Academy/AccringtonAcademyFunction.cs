@@ -14,7 +14,6 @@ namespace AccringtonAcademy
     public partial class Function
     {
         private string HomePage { get; set; }
-        private AmazonDynamoDBClient Dbclient { get; set; }
 
         public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
         {
@@ -38,47 +37,39 @@ namespace AccringtonAcademy
             }
             if (input.GetRequestType() == typeof(LaunchRequest))
             {
-                log.LogLine(@"Default LaunchRequest made: Alexa, Launch Bite Me");
-                var shouldExit = false;
+                log.LogLine(@"Default LaunchRequest made: Alexa, Launch Accrington Academy");
                 response = LaunchIntent(input, context, resource);
             }
             else if (input.GetRequestType() == typeof(IntentRequest))
             {
                 var intentRequest = (IntentRequest)input.Request;
-                var shouldExit = false;
                 switch (intentRequest.Intent.Name)
                 {
                     case "AMAZON.CancelIntent":
-                        shouldExit = true;
                         response = CancelIntent(input, context, resource); //quit the game
                         break;
 
                     case "AMAZON.StopIntent":
-                        shouldExit = true;
                         response = CancelIntent(input, context, resource); //quit the game
                         break;
 
                     case "AMAZON.NavigateHomeIntent":
-                        shouldExit = true;
                         response = CancelIntent(input, context, resource); //quit the game
                         break;
 
                     case "AMAZON.HelpIntent":
                         log.LogLine("AMAZON.HelpIntent: send HelpMessage");
-                        shouldExit = false;
                         response = HelpIntent(input, context, resource);
                         break;
 
                     case "TimeTableIntent":
                         log.LogLine("TimeTableIntent: Check response and give Week Number");
-                        shouldExit = true;
                         response = TimeTableIntent(input, context, resource);
                         break; 
                 
                     default:
                         //if alexa hears anthing that does not match any intent will return new retort.
                         log.LogLine("Unknown intent: " + intentRequest.Intent.Name);
-                        shouldExit = true;
                         response = TimeTableIntent(input, context, resource);
                         break;
                 }

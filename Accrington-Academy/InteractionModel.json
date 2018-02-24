@@ -1,0 +1,92 @@
+﻿{
+  "languageModel": {
+    "intents": [
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": [
+          "no",
+          "no thanks",
+          "no thankyou",
+          "no thank you"
+        ]
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.MoreIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.NavigateHomeIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.NavigateSettingsIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.NextIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.PageDownIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.PageUpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.PreviousIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.ScrollDownIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.ScrollLeftIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.ScrollRightIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.ScrollUpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "TimeTableIntent",
+        "samples": [
+          "what week is it",
+          "what's the week",
+          "which week is it",
+          "what week it is",
+          "which week it is",
+          "what is the week",
+          "what's is the week",
+          "what week on the timetable",
+          "which one is it",
+          "what is the week number",
+          "which week",
+          "what week",
+          "whats the week",
+          "Yes",
+          "yes please",
+          "please",
+          "i do",
+          "yes i do"
+        ],
+        "slots": []
+      }
+    ],
+    "invocationName": "accrington academy"
+  }
+}
