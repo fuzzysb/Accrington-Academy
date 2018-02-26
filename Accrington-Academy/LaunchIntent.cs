@@ -29,11 +29,13 @@ namespace AccringtonAcademy
                 ((PlainTextOutputSpeech)innerSpeechResponseReprompt).Text = resource.StandardReprompt;
 
                 //Setting Card Response
-                var card = SetStandardCard(@"Accrington Academy", resource.LaunchMessage,
-                    SetCardImage(
-                        "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy/AccringtonAcademy-Small.png",
-                        "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy/AccringtonAcademy-Large.png"));
-                response.Response.Card = card;
+                //Setting Card Response
+            log.LogLine("Setting up the Card Response");
+            var card = SetStandardCard( @"Accrington Academy TimeTable", resource.LaunchMessage,
+                SetCardImage(
+                    "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy/AccringtonAcademy-Small.png",
+                    "https://raw.githubusercontent.com/fuzzysb/Accrington-Academy/master/Accrington-Academy/AccringtonAcademy-Large.png"));
+            response.Response.Card = card;
             }
 
 
